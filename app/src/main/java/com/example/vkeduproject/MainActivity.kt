@@ -3,45 +3,49 @@ package com.example.vkeduproject
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.vkeduproject.ui.theme.VkEduProjectTheme
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.vkeduproject.presentation.appdetails.AppDetailsHeader
+import com.example.vkeduproject.presentation.appdetails.AppListScreen
+import com.example.vkeduproject.presentation.appdetails.mockAppsList
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             VkEduProjectTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                AppNavigation()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    VkEduProjectTheme {
-        Greeting("Android")
+fun AppNavigation() {
+    val navController = rememberNavController()
+    NavHost(
+        navController = navController,
+        startDestination = "app_list"
+    ) {
+        composable("app_list") {
+            AppListScreen(
+                onAppClick = { appId ->
+                    navController.navigate("app_details/$appId")
+                }
+            )
+        }
+        composable("app_details/{appId}") { backStackEntry ->
+            val appId = backStackEntry.arguments?.getString("appId")
+            val selectedApp = mockAppsList.find { it.id == appId }
+            if (selectedApp != null) {
+                AppDetailsHeader(
+                    appDetails = selectedApp
+                )
+            } else {
+            }
+        }
     }
 }
