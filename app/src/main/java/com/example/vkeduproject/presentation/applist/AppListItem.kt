@@ -1,4 +1,4 @@
-package com.example.vkeduproject.presentation.appdetails
+package com.example.vkeduproject.presentation.applist
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -21,7 +21,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil3.Image
 import coil3.compose.AsyncImage
 import com.example.vkeduproject.domain.appdetails.AppDetails
 import com.example.vkeduproject.domain.appdetails.Category

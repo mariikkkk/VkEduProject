@@ -1,4 +1,4 @@
-package com.example.vkeduproject.presentation.appdetails
+package com.example.vkeduproject.presentation.applist
 
 import com.example.vkeduproject.domain.appdetails.AppDetails
 import com.example.vkeduproject.domain.appdetails.Category
