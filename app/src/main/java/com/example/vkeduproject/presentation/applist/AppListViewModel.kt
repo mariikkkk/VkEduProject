@@ -30,16 +30,11 @@ class AppListViewModel: ViewModel(){
             items = mockAppsList
         )
     }
-    private var isSnackBarShown = false     // я не понимаю, как без этого сделать ограничение в 1 раз. Без флага оно не блокируется после 1 вызова. Помогите
-
     fun onLogoClick(){
-        if(!isSnackBarShown){
-            isSnackBarShown = true
-            viewModelScope.launch {
-                _events.send(
-                    ScreenEvent.ShowSnackbar("Вы кликнули на лого RuStore! Пасхалка!")
-                )
-            }
+        viewModelScope.launch {
+            _events.send(
+                ScreenEvent.ShowSnackbar("Вы кликнули на лого RuStore! Пасхалка!")
+            )
         }
     }
 
