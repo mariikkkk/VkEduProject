@@ -2,7 +2,12 @@ package com.example.vkeduproject.presentation.applist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.vkeduproject.data.appdetails.AppDetailsMapper
+import com.example.vkeduproject.data.appdetails.CategoryMapper
+import com.example.vkeduproject.data.applist.AppListApi
+import com.example.vkeduproject.data.applist.AppListRepositoryImpl
 import com.example.vkeduproject.domain.appdetails.AppDetails
+import com.example.vkeduproject.domain.applist.GetAppListUseCase
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -10,15 +15,18 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-data class AppListState (
-    val items: List<AppDetails> = emptyList()
-)
 
-sealed interface ScreenEvent {
-    data class ShowSnackbar(val message: String) : ScreenEvent
-}
 
 class AppListViewModel: ViewModel(){
+    private val appListUseCase = GetAppListUseCase(
+        appListRepository = AppListRepositoryImpl(
+            mapper = AppDetailsMapper(
+                categoryMapper = CategoryMapper()
+            ),
+            api = AppListApi()
+
+        )
+    )
     private val _state = MutableStateFlow(AppListState())
     val state: StateFlow<AppListState> = _state.asStateFlow()
 
@@ -26,9 +34,14 @@ class AppListViewModel: ViewModel(){
     val events = _events.receiveAsFlow()
 
     init{
-        _state.value = _state.value.copy(
-            items = mockAppsList
-        )
+        getAppList()
+    }
+
+    fun getAppList(){
+        viewModelScope.launch {
+            val appList = appListUseCase()
+            _state.value = _state.value.copy(items = appList)
+        }
     }
     fun onLogoClick(){
         viewModelScope.launch {
