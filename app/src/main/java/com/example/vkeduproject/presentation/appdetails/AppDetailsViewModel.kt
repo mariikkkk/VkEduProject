@@ -7,6 +7,7 @@ import com.example.vkeduproject.data.appdetails.AppDetailsMapper
 import com.example.vkeduproject.data.appdetails.AppDetailsMockRepositoryImpl
 import com.example.vkeduproject.data.appdetails.CategoryMapper
 import com.example.vkeduproject.domain.appdetails.GetAppDetailsUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.BUFFERED
 import kotlinx.coroutines.delay
@@ -15,15 +16,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import kotlin.time.Duration.Companion.seconds
 
-class AppDetailsViewModel : ViewModel(){
-    private val appDetailsUseCase = GetAppDetailsUseCase(
-        AppDetailsMockRepositoryImpl(
-            mapper = AppDetailsMapper(categoryMapper = CategoryMapper()),
-            api = AppDetailsApi()
-        )
-    )
+
+@HiltViewModel
+class AppDetailsViewModel @Inject constructor(
+    private val appDetailsUseCase: GetAppDetailsUseCase
+) : ViewModel(){
+
     private val _state = MutableStateFlow<AppDetailsState>(AppDetailsState.Loading)
     val state = _state.asStateFlow()
 

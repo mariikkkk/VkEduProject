@@ -1,6 +1,8 @@
 package com.example.vkeduproject.domain.appdetails
 
-class GetAppDetailsUseCase(
+import javax.inject.Inject
+
+class GetAppDetailsUseCase @Inject constructor(
     private val repository: AppDetailRepository
 ) {
     suspend operator fun invoke(id: String): AppDetails {

@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.Flow
@@ -27,7 +28,7 @@ import com.example.vkeduproject.ui.theme.VkEduProjectTheme
 fun AppDetailsScreen(
     appId: String,
     onBackClick: () -> Unit,
-    viewModel: AppDetailsViewModel = viewModel()
+    viewModel: AppDetailsViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val events = viewModel.events

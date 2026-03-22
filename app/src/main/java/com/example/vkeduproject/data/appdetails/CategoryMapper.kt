@@ -1,8 +1,9 @@
 package com.example.vkeduproject.data.appdetails
 
 import com.example.vkeduproject.domain.appdetails.Category
+import javax.inject.Inject
 
-class CategoryMapper {
+class CategoryMapper @Inject constructor(){
     fun toDomain(category: String): Category{
         return when (category){
             "App" -> Category.APP
