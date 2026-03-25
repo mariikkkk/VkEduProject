@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vkeduproject.data.appdetails.AppDetailsApi
 import com.example.vkeduproject.data.appdetails.AppDetailsMapper
-import com.example.vkeduproject.data.appdetails.AppDetailsMockRepositoryImpl
 import com.example.vkeduproject.data.appdetails.CategoryMapper
 import com.example.vkeduproject.domain.appdetails.GetAppDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

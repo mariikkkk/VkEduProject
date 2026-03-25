@@ -43,7 +43,6 @@ fun AppListItem(
             model = app.iconUrl,
             contentDescription = "Иконка приложения",
             contentScale = ContentScale.Crop,
-            placeholder = painterResource(id = R.drawable.logo_sber),
             modifier = Modifier
                 .size(56.dp)
                 .clip(RoundedCornerShape(12.dp))
@@ -67,7 +66,7 @@ fun AppListItem(
             )
             Spacer(modifier = Modifier.height(2.dp))
             Text(
-                text = app.category.name,
+                text = getCategoryText(app.category),
                 fontSize = 12.sp,
                 color = Color.Gray
             )

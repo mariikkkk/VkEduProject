@@ -17,7 +17,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.vkeduproject.data.appdetails.AppDetailsApi
 import com.example.vkeduproject.data.appdetails.AppDetailsMapper
-import com.example.vkeduproject.data.appdetails.AppDetailsMockRepositoryImpl
 import com.example.vkeduproject.data.appdetails.CategoryMapper
 import com.example.vkeduproject.domain.appdetails.AppDetails
 import com.example.vkeduproject.domain.appdetails.GetAppDetailsUseCase

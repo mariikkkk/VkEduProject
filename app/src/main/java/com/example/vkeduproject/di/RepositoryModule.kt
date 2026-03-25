@@ -1,6 +1,6 @@
 package com.example.vkeduproject.di
 
-import com.example.vkeduproject.data.appdetails.AppDetailsMockRepositoryImpl
+import com.example.vkeduproject.data.appdetails.AppDetailsRepositoryImpl
 import com.example.vkeduproject.data.applist.AppListRepositoryImpl
 import com.example.vkeduproject.domain.appdetails.AppDetailRepository
 import com.example.vkeduproject.domain.applist.AppListRepository
@@ -20,7 +20,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindAppDetailRepository(
-        impl: AppDetailsMockRepositoryImpl
+        impl: AppDetailsRepositoryImpl
     ): AppDetailRepository
 
 }
