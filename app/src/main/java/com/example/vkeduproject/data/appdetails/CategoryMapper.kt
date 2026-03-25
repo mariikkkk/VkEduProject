@@ -6,27 +6,27 @@ import javax.inject.Inject
 class CategoryMapper @Inject constructor(){
     fun toDomain(category: String): Category{
         return when (category){
-            "App" -> Category.APP
-            "Game" -> Category.GAME
-            "Productivity" -> Category.PRODUCTIVITY
-            "Social" -> Category.SOCIAL
-            "Education" -> Category.EDUCATION
-            "Entertainment" -> Category.ENTERTAINMENT
-            "Music" -> Category.MUSIC
-            "Video" -> Category.VIDEO
-            "Photography" -> Category.PHOTOGRAPHY
-            "Health" -> Category.HEALTH
-            "Sports" -> Category.SPORTS
-            "News" -> Category.NEWS
-            "Books" -> Category.BOOKS
-            "Business" -> Category.BUSINESS
-            "Finance" -> Category.FINANCE
-            "Travel" -> Category.TRAVEL
-            "Maps" -> Category.MAPS
-            "Food" -> Category.FOOD
-            "Shopping" -> Category.SHOPPING
-            "Utilities" -> Category.UTILITIES
-            else -> throw IllegalStateException("Unsupported category type: $category")
+            "App", "Приложения" -> Category.APP
+            "Game", "Игры" -> Category.GAME
+            "Productivity", "Производительность" -> Category.PRODUCTIVITY
+            "Social", "Социальные" -> Category.SOCIAL
+            "Education", "Образование" -> Category.EDUCATION
+            "Entertainment", "Развлечения" -> Category.ENTERTAINMENT
+            "Music", "Музыка" -> Category.MUSIC
+            "Video", "Видео" -> Category.VIDEO
+            "Photography", "Фотография" -> Category.PHOTOGRAPHY
+            "Health", "Здоровье" -> Category.HEALTH
+            "Sports", "Спорт" -> Category.SPORTS
+            "News", "Новости" -> Category.NEWS
+            "Books", "Книги" -> Category.BOOKS
+            "Business", "Бизнес" -> Category.BUSINESS
+            "Finance", "Финансы" -> Category.FINANCE
+            "Travel", "Путешествия" -> Category.TRAVEL
+            "Maps", "Карты" -> Category.MAPS
+            "Food", "Еда" -> Category.FOOD
+            "Shopping", "Покупки" -> Category.SHOPPING
+            "Utilities", "Инструменты" -> Category.UTILITIES
+            else -> Category.APP
         }
     }
 }

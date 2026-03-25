@@ -9,7 +9,7 @@ class AppDetailsRepositoryImpl @Inject constructor(
     private val api: AppDetailsApi
 ): AppDetailRepository {
     override suspend fun get(id: String): AppDetails {
-        TODO()
+        val dto = api.getAppDetails(id)
+        return mapper.toDomain(dto)
     }
-
 }
