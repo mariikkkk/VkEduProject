@@ -2,9 +2,12 @@ package com.example.vkeduproject.presentation.appdetails
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -18,10 +21,11 @@ import com.example.vkeduproject.ui.theme.VkEduProjectTheme
 internal fun Toolbar(
     onBackClick: () -> Unit,
     onShareClick: () -> Unit,
+    isInWishList: Boolean,
+    onWishListClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
         modifier = modifier
             .fillMaxWidth()
     ) {
@@ -30,6 +34,16 @@ internal fun Toolbar(
                 imageVector = Icons.AutoMirrored.Default.ArrowBack,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.primary,
+            )
+        }
+        Spacer(Modifier.weight(1f))
+        IconButton(
+            onClick = onWishListClick
+        ) {
+            Icon(
+                if(isInWishList)Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                contentDescription = "Добавление в вишлист",
+                tint = MaterialTheme.colorScheme.primary
             )
         }
         IconButton(onClick = onShareClick) {
@@ -49,6 +63,8 @@ private fun Preview() {
         Toolbar(
             onBackClick = {},
             onShareClick = {},
+            false,
+            {}
         )
     }
 }

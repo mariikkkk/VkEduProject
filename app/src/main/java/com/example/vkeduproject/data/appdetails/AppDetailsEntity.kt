@@ -14,4 +14,5 @@ data class AppDetailsEntity (
     val size: Float,
     val iconUrl: String,
     val description: String,
+    val isInWishList: Boolean = false
 )

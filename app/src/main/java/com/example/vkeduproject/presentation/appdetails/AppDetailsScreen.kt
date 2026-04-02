@@ -40,10 +40,6 @@ fun AppDetailsScreen(
         snackbarHostState = snackbarHostState,
     )
 
-    LaunchedEffect(appId) {
-        viewModel.getAppDetails(appId)
-    }
-
     Scaffold(
         snackbarHost = {
             SnackbarHost(snackbarHostState)
@@ -62,7 +58,7 @@ fun AppDetailsScreen(
 
             is AppDetailsState.Error -> {
                 AppDetailsError(
-                    onRefreshClick = { viewModel.getAppDetails(appId) },
+                    onRefreshClick = { viewModel.getAppDetails() },
                     modifier = Modifier
                         .fillMaxSize()
                         .safeDrawingPadding()
@@ -73,6 +69,7 @@ fun AppDetailsScreen(
             is AppDetailsState.Content -> {
                 AppDetailsContent(
                     content = currentState,
+                    isInWishList = currentState.appDetails.isInWishList,
                     onBackClick = {
                         // TODO: Открыть предыдущий экран через Jetpack Navigation
                         onBackClick()
@@ -88,6 +85,9 @@ fun AppDetailsScreen(
                     },
                     onDeveloperClick = {
                         viewModel.showUnderDevelopmentMessage()
+                    },
+                    onWishListClick = {
+                        viewModel.toggleWishlist()
                     },
                     modifier = Modifier
                         .fillMaxSize()

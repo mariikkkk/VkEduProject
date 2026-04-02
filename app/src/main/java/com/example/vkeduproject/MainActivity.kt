@@ -50,20 +50,16 @@ fun AppNavigation() {
             val viewModel: AppListViewModel = hiltViewModel()
             AppListScreen(
                 viewModel = viewModel,
-                onAppClick = { appId ->
-                    navController.navigate("app_details/$appId")
+                onAppClick = { id ->
+                    navController.navigate("app_details/$id")
                 }
             )
         }
-        composable("app_details/{appId}") { backStackEntry ->
+        composable("app_details/{id}") { backStackEntry ->
             val viewModel: AppDetailsViewModel = hiltViewModel()
-            val appId = backStackEntry.arguments?.getString("appId") ?: ""
-            LaunchedEffect(appId) {
-                viewModel.getAppDetails(appId)
-
-            }
+            val appId = backStackEntry.arguments?.getString("id") ?: ""
                 AppDetailsScreen(
-                    appId,
+                    appId = appId,
                     viewModel = viewModel,
                     onBackClick = { navController.popBackStack() }
                 )

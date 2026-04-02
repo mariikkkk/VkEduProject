@@ -14,7 +14,8 @@ class AppDetailsEntityMapper @Inject constructor(){
             size = entity.size,
             iconUrl = entity.iconUrl,
             screenshotUrlList = emptyList(),
-            description = entity.description
+            description = entity.description,
+            isInWishList = entity.isInWishList
         )
         return res
     }
@@ -28,7 +29,8 @@ class AppDetailsEntityMapper @Inject constructor(){
             ageRating = appDetails.ageRating,
             size = appDetails.size,
             iconUrl = appDetails.iconUrl,
-            description = appDetails.description
+            description = appDetails.description,
+            isInWishList = appDetails.isInWishList
         )
         return res
     }

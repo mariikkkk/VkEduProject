@@ -20,11 +20,13 @@ import com.example.vkeduproject.ui.theme.VkEduProjectTheme
 @Composable
 fun AppDetailsContent(
     content: AppDetailsState.Content,
+    isInWishList: Boolean,
     onBackClick: () -> Unit,
     onShareClick: () -> Unit,
     onInstallClick: () -> Unit,
     onReadMoreClick: () -> Unit,
     onDeveloperClick: () -> Unit,
+    onWishListClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val appDetails = content.appDetails
@@ -34,6 +36,8 @@ fun AppDetailsContent(
         Toolbar(
             onBackClick = onBackClick,
             onShareClick = onShareClick,
+            isInWishList,
+            onWishListClick
         )
         Spacer(Modifier.height(8.dp))
         AppDetailsHeader(
@@ -107,6 +111,8 @@ private fun Preview() {
             onInstallClick = {},
             onDeveloperClick = {},
             modifier = Modifier.fillMaxSize(),
+            isInWishList = true,
+            onWishListClick = {}
         )
     }
 }
